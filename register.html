@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register - Form</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css">
+
+    <link rel="stylesheet" href="./asset/css/login.css">
+</head>
+
+<body>
+    <div class="form-container">
+        <h2>Register</h2>
+        <label for="name">Name</label>
+        <input type="text" id="name" placeholder="Enter your full name">
+
+        <label for="username">Username</label>
+        <input type="text" id="username" placeholder="Enter your username">
+
+        <label for="email">Email</label>
+        <input type="email" id="email" placeholder="Enter your email">
+
+        <label for="password">Password</label>
+        <div class="password-container">
+            <input type="password" id="password" placeholder="Enter your password">
+            <button type="button" onclick="togglePassword('password', this)">
+                <i class="fa-solid fa-eye"></i>
+            </button>
+        </div>
+
+        <label for="con-password">Confirm Password</label>
+        <div class="password-container">
+            <input type="password" id="con-password" placeholder="Confirm your password">
+            <button type="button" onclick="togglePassword('con-password', this)">
+                <i class="fa-solid fa-eye"></i>
+            </button>
+        </div>
+
+        <button class="submit-btn" onclick="register()">Register</button>
+        <p>Already have an account? <a href="index.html">Login here</a></p>
+    </div>
+
+    <script>
+        function register() {
+
+            var Name = document.getElementById('name').value;
+            var username = document.getElementById('username').value.trim();
+            var email = document.getElementById('email').value.trim();
+            var password = document.getElementById('password').value.trim();
+            var confirmpassword = document.getElementById('con-password').value.trim();
+
+
+            if (Name === '') {
+                alert("Please Enter your Name First")
+                returnl
+            }
+            if (username === '') {
+                alert("Please Enter your username First")
+                return;
+            }
+            if (email === '') {
+                alert("Please Enter your email First")
+                return;
+            }
+            if (password === '' || confirmpassword === '') {
+                alert("Please Enter your Password First")
+                return;
+            }
+            if (password !== confirmpassword) {
+                alert("Please Enter Same Password First")
+                return;
+            }
+            if (localStorage.getItem(username)) {
+                alert("User Already Exist")
+            } else {
+                const user = { Name, username, email, password };
+                localStorage.setItem(username, JSON.stringify(user));
+                alert("Registeration Successful")
+                window.location.href = "./index.html";
+
+            }
+        }
+
+
+        function togglePassword(fieldId, button) {
+            const input = document.getElementById(fieldId);
+            const icon = button.querySelector('i');
+
+            if (input.type === "password") {
+                input.type = "text";
+                icon.classList.replace("fa-eye", "fa-eye-slash");
+            } else {
+                input.type = "password";
+                icon.classList.replace("fa-eye-slash", "fa-eye");
+            }
+        }
+
+    </script>
+
+
+</body>
+
+</html>

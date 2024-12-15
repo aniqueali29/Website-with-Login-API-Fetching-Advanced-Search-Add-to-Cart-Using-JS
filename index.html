@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Form</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css">
+    <link rel="stylesheet" href="./asset/css/login.css">
+</head>
+
+<body>
+    <div class="form-container">
+        <h2>Login</h2>
+        <label for="username">Username</label>
+        <input type="text" id="username" placeholder="Enter your username">
+
+        <label for="password">Password</label>
+        <div class="password-container">
+            <input type="password" id="password" placeholder="Enter your password">
+            <button type="button" onclick="togglePassword('password', this)">
+                <i class="fa-solid fa-eye" style="background-color: black;"></i>
+            </button>
+        </div>
+
+        <button class="submit-btn" onclick="login()">Login</button>
+        <p>Don't have an account? <a href="register.html">Register here</a></p>
+    </div>
+
+    <script>
+        function login() {
+
+            var username = document.getElementById('username').value;
+            var password = document.getElementById('password').value.trim();
+
+
+            if (username === '') {
+                alert("Please Enter your Name First")
+                return;
+            }
+            if (password === '') {
+                alert("Please Enter your Password First")
+                return;
+            }
+
+            const storedUser = JSON.parse(localStorage.getItem(username));
+
+            if (storedUser && storedUser.password === password) {
+                alert("Login successful!");
+                localStorage.setItem('getlogined', username)
+                window.location.href = "./api.html"
+            } else {
+                alert("Invalid username or password");
+            }
+
+        }
+        function togglePassword(fieldId, button) {
+            const input = document.getElementById(fieldId);
+            const icon = button.querySelector('i');
+
+            if (input.type === "password") {
+                input.type = "text";
+                icon.classList.replace("fa-eye", "fa-eye-slash");
+            } else {
+                input.type = "password";
+                icon.classList.replace("fa-eye-slash", "fa-eye");
+            }
+        }
+
+    </script>
+</body>
+
+</html>

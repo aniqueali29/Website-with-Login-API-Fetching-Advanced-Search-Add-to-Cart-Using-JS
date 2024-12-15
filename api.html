@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css"
+        integrity="sha512-5Hs3dF2AEPkpNAR7UiOHba+lRSJNeM2ECkwxUIxC1Q/FLycGTbNapWXB4tP889k5T5Ju8fs4b1P5z/iB4nMfSQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="./asset/css/style.css">
+    <title>Product</title>
+</head>
+
+<body>
+    <!-- Navbar -->
+    <nav>
+        <div class="logo-container">
+            <a href="api.html" class="logo">MyStore</a>
+        </div>
+        <ul>
+            <li><a href="api.html">Home</a></li>
+            <li><a href="cart.html"><i class="fa-solid fa-cart-shopping" id="quantity">(0)</i></a></li>
+            <li><button onclick="logout()">Logout</button></li>
+        </ul>
+    </nav>
+
+    <!-- Search Bar -->
+    <div class="search-container">
+        <input type="text" id="search-input" placeholder="Search for products..." onkeyup="searchProducts()" />
+    </div>
+
+    <!-- Main Heading -->
+    <h1 class="main-heading">Top Selling Products</h1>
+
+    <!-- Product Container -->
+    <div class="container" id="products-container">
+    </div>
+
+    <script>
+        if (!localStorage.getItem('getlogined')) {
+            alert('You must log in first!');
+            window.location.href = 'index.html';
+        }
+
+        function logout() {
+            localStorage.clear();
+            window.location.href = "index.html";
+        }
+    </script>
+    <script src="./asset/js/app.js"></script>
+    <script src="./asset/js/cart.js"></script>
+</body>
+
+</html>
