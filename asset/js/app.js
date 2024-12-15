@@ -63,7 +63,15 @@ function addToCart(productId) {
 
   localStorage.setItem("data", JSON.stringify(cartItem));
   updateCartQuantity();
-  alert("Product added to cart successfully!");
+
+  Swal.fire({
+    icon: 'success',
+    title: 'Product Added',
+    text: 'Product added to cart successfully!',
+    showConfirmButton: false,
+    timer: 1500
+  });
+
 }
 
 function updateCartQuantity() {

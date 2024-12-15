@@ -62,5 +62,11 @@ function removeItem(index) {
   cartItem.splice(index, 1);
   localStorage.setItem("data", JSON.stringify(cartItem));
   renderCartItem();
-  alert("Item removed successfully!");
+  Swal.fire({
+    icon: 'success',
+    title: 'Item Removed',
+    text: 'The item was removed successfully!',
+    showConfirmButton: false,
+    timer: 1500
+  });
 }

@@ -12,7 +12,6 @@
 </head>
 
 <body>
-    <!-- Navbar -->
     <nav>
         <div class="logo-container">
             <a href="api.html" class="logo">MyStore</a>
@@ -24,21 +23,24 @@
         </ul>
     </nav>
 
-    <!-- Search Bar -->
     <div class="search-container">
         <input type="text" id="search-input" placeholder="Search for products..." onkeyup="searchProducts()" />
     </div>
 
-    <!-- Main Heading -->
     <h1 class="main-heading">Top Selling Products</h1>
 
-    <!-- Product Container -->
     <div class="container" id="products-container">
     </div>
 
     <script>
         if (!localStorage.getItem('getlogined')) {
-            alert('You must log in first!');
+            Swal.fire({
+                icon: 'warning',
+                title: 'Login Required',
+                text: 'You must log in first!',
+                confirmButtonText: 'OK'
+            });
+
             window.location.href = 'index.html';
         }
 

@@ -44,45 +44,74 @@
 
     <script>
         function register() {
-
-            var Name = document.getElementById('name').value;
+            var Name = document.getElementById('name').value.trim();
             var username = document.getElementById('username').value.trim();
             var email = document.getElementById('email').value.trim();
             var password = document.getElementById('password').value.trim();
             var confirmpassword = document.getElementById('con-password').value.trim();
 
-
             if (Name === '') {
-                alert("Please Enter your Name First")
-                returnl
+                Swal.fire({
+                    icon: 'warning',
+                    title: 'Missing Information',
+                    text: 'Please enter your name first!'
+                });
+                return;
             }
             if (username === '') {
-                alert("Please Enter your username First")
+                Swal.fire({
+                    icon: 'warning',
+                    title: 'Missing Information',
+                    text: 'Please enter your username first!'
+                });
                 return;
             }
             if (email === '') {
-                alert("Please Enter your email First")
+                Swal.fire({
+                    icon: 'warning',
+                    title: 'Missing Information',
+                    text: 'Please enter your email first!'
+                });
                 return;
             }
             if (password === '' || confirmpassword === '') {
-                alert("Please Enter your Password First")
+                Swal.fire({
+                    icon: 'warning',
+                    title: 'Missing Information',
+                    text: 'Please enter your password first!'
+                });
                 return;
             }
             if (password !== confirmpassword) {
-                alert("Please Enter Same Password First")
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Password Mismatch',
+                    text: 'Passwords do not match. Please try again!'
+                });
                 return;
             }
             if (localStorage.getItem(username)) {
-                alert("User Already Exist")
+                Swal.fire({
+                    icon: 'error',
+                    title: 'User Already Exists',
+                    text: 'The username is already taken. Please choose another one!'
+                });
             } else {
                 const user = { Name, username, email, password };
                 localStorage.setItem(username, JSON.stringify(user));
-                alert("Registeration Successful")
-                window.location.href = "./index.html";
 
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Registration Successful',
+                    text: 'You have registered successfully!',
+                    timer: 2000,
+                    showConfirmButton: false
+                }).then(() => {
+                    // Redirect to another page
+                    window.location.href = "./index.html";
+                });
             }
         }
-
 
         function togglePassword(fieldId, button) {
             const input = document.getElementById(fieldId);
